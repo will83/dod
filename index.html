@@ -1,0 +1,1343 @@
+<!doctype html>
+<html
+  lang="fr"
+  x-data="{ menuOpen: false, currentPage: 'home' }"
+  class="scroll-smooth"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Elodie Benoit — PR & Strategic Advisor | Relations médias, Influence & Casting</title>
+    <meta name="description" content="Elodie Benoit, PR & Strategic Advisor basée à Lyon. Plus de 15 ans d'expertise en relations médias, influence, casting sur-mesure, storytelling et événements presse pour marques à fort potentiel." />
+    <meta name="keywords" content="relations médias, PR, attachée de presse, influence, casting, storytelling, événements presse, marque, visibilité, Lyon, Paris, Marseille, strategic advisor, relations presse, médias, communication" />
+    <meta name="author" content="Elodie Benoit" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://wegetit.fr/" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Elodie Benoit — PR & Strategic Advisor" />
+    <meta property="og:description" content="Relations médias, influence, casting sur-mesure et storytelling. Plus de 15 ans d'expertise au service des marques à fort potentiel." />
+    <meta property="og:image" content="https://wegetit.fr/profile-photo.png" />
+    <meta property="og:url" content="https://wegetit.fr/" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content="Weget!t" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Elodie Benoit — PR & Strategic Advisor" />
+    <meta name="twitter:description" content="Relations médias, influence, casting sur-mesure et storytelling. Plus de 15 ans d'expertise au service des marques à fort potentiel." />
+    <meta name="twitter:image" content="https://wegetit.fr/profile-photo.png" />
+
+    <!-- Structured Data JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Weget!t — Elodie Benoit",
+      "description": "PR & Strategic Advisor spécialisée en relations médias, influence, casting sur-mesure, storytelling et événements presse.",
+      "url": "https://wegetit.fr",
+      "email": "elodie.benoit@wegetit.fr",
+      "telephone": "+33603587137",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Lyon",
+        "addressCountry": "FR"
+      },
+      "areaServed": ["Lyon", "Paris", "Marseille", "Copenhague"],
+      "founder": {
+        "@type": "Person",
+        "name": "Elodie Benoit",
+        "jobTitle": "PR & Strategic Advisor",
+        "url": "https://www.linkedin.com/in/elodie-benoit-we-get-it-relations-medias-lyon/"
+      },
+      "knowsAbout": ["Relations médias", "Influence", "Casting", "Storytelling", "Événements presse", "Communication de marque"]
+    }
+    </script>
+
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              sand: "#ededed",
+              "sand-light": "#f5f2f0",
+              "sand-dark": "#d4c9b8",
+              ink: "#09090b",
+              "ink-light": "#344a3d",
+              cream: "#ededed",
+              white: "#ffffff",
+            },
+            fontFamily: {
+              serif: ["Cormorant Garamond", "Georgia", "serif"],
+              sans: ["DM Sans", "Helvetica Neue", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      [x-cloak] {
+        display: none !important;
+      }
+
+      ::selection {
+        background: #09090b;
+        color: #ededed;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      /* Reveal animations */
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition:
+          opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal-delay-1 {
+        transition-delay: 0.1s;
+      }
+      .reveal-delay-2 {
+        transition-delay: 0.2s;
+      }
+      .reveal-delay-3 {
+        transition-delay: 0.3s;
+      }
+      .reveal-delay-4 {
+        transition-delay: 0.4s;
+      }
+      .reveal-delay-5 {
+        transition-delay: 0.5s;
+      }
+
+      /* Stagger children */
+      .stagger-children .reveal:nth-child(1) {
+        transition-delay: 0.05s;
+      }
+      .stagger-children .reveal:nth-child(2) {
+        transition-delay: 0.12s;
+      }
+      .stagger-children .reveal:nth-child(3) {
+        transition-delay: 0.19s;
+      }
+      .stagger-children .reveal:nth-child(4) {
+        transition-delay: 0.26s;
+      }
+
+      /* Line draw */
+      .line-draw {
+        width: 0;
+        transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .line-draw.visible {
+        width: 100%;
+      }
+
+      /* Horizontal rule animation */
+      .hr-reveal {
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .hr-reveal.visible {
+        transform: scaleX(1);
+      }
+
+      /* Smooth link underline */
+      .link-underline {
+        position: relative;
+      }
+      .link-underline::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 1px;
+        background: currentColor;
+        transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .link-underline:hover::after {
+        width: 100%;
+      }
+
+      /* Nav link active */
+      .nav-active::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: currentColor;
+      }
+
+      /* Logo hover */
+      .logo-item {
+        opacity: 0.7;
+        transition: opacity 0.4s ease;
+      }
+      .logo-item:hover {
+        opacity: 1;
+      }
+
+      /* Parallax subtle */
+      .parallax-slow {
+        will-change: transform;
+      }
+
+      /* Mobile menu */
+      .menu-overlay {
+        clip-path: circle(0% at calc(100% - 2rem) 2rem);
+        transition: clip-path 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .menu-overlay.open {
+        clip-path: circle(150% at calc(100% - 2rem) 2rem);
+      }
+
+      /* Expertise card */
+      .expertise-card {
+        border-top: 1px solid rgba(9, 9, 11, 0.1);
+        transition:
+          border-color 0.4s ease,
+          background 0.4s ease;
+      }
+      .expertise-card:hover {
+        border-color: rgba(9, 9, 11, 0.3);
+        background: rgba(237, 237, 237, 0.3);
+      }
+
+      /* Text mask reveal */
+      .text-mask {
+        overflow: hidden;
+        padding-bottom: 0.3em;
+      }
+      .text-mask span {
+        display: inline-block;
+        transform: translateY(110%);
+        transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .text-mask.visible span {
+        transform: translateY(0);
+      }
+
+      /* Scroll indicator */
+      @keyframes scrollDown {
+        0%,
+        100% {
+          transform: translateY(0);
+          opacity: 1;
+        }
+        50% {
+          transform: translateY(8px);
+          opacity: 0.5;
+        }
+      }
+      .scroll-indicator {
+        animation: scrollDown 2s ease-in-out infinite;
+      }
+
+      /* Grain overlay */
+      .grain::before {
+        content: "";
+        position: fixed;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+        pointer-events: none;
+        z-index: 9999;
+      }
+
+      /* Agency accordion */
+      .agency-block .agency-brands {
+        display: grid;
+        grid-template-rows: 0fr;
+        opacity: 0;
+        transition:
+          grid-template-rows 0.5s ease,
+          opacity 0.4s ease;
+      }
+      .agency-block .agency-brands > div {
+        overflow: hidden;
+      }
+      .agency-block:hover .agency-brands {
+        grid-template-rows: 1fr;
+        opacity: 1;
+      }
+    </style>
+  </head>
+
+  <body
+    class="bg-cream text-ink font-sans grain"
+    x-init="
+  // Intersection Observer for reveals
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal, .line-draw, .hr-reveal, .text-mask').forEach(el => {
+    observer.observe(el);
+  });
+
+  // Update active nav on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        currentPage = entry.target.id;
+      }
+    });
+  }, { threshold: 0.3 });
+  sections.forEach(s => navObserver.observe(s));
+"
+  >
+    <!-- Navigation -->
+    <nav
+      class="fixed top-0 left-0 w-full z-50 mix-blend-difference"
+      x-data="{ scrolled: false }"
+      @scroll.window="scrolled = (window.scrollY > 80)"
+    >
+      <div class="max-w-[1400px] mx-auto px-6 md:px-10 lg:px-16">
+        <div class="flex items-center justify-between h-20 md:h-24">
+          <!-- Logo -->
+          <a href="#home" class="relative z-50 text-white">
+            <span
+              class="font-serif text-xl md:text-2xl font-light tracking-wide"
+              >Weget!t</span
+            >
+          </a>
+
+          <!-- Desktop Nav -->
+          <div class="hidden md:flex items-center gap-10">
+            <a
+              href="#home"
+              class="text-white text-[11px] tracking-[0.2em] uppercase link-underline"
+              :class="currentPage === 'home' && 'nav-active'"
+              >Accueil</a
+            >
+            <a
+              href="#expertise"
+              class="text-white text-[11px] tracking-[0.2em] uppercase link-underline"
+              :class="currentPage === 'expertise' && 'nav-active'"
+              >Expertise</a
+            >
+            <a
+              href="#about"
+              class="text-white text-[11px] tracking-[0.2em] uppercase link-underline"
+              :class="currentPage === 'about' && 'nav-active'"
+              >À propos</a
+            >
+            <a
+              href="#clients"
+              class="text-white text-[11px] tracking-[0.2em] uppercase link-underline"
+              :class="currentPage === 'clients' && 'nav-active'"
+              >Clients</a
+            >
+            <a
+              href="#contact"
+              class="text-white text-[11px] tracking-[0.2em] uppercase link-underline"
+              :class="currentPage === 'contact' && 'nav-active'"
+              >Contact</a
+            >
+          </div>
+
+          <!-- Mobile Menu Toggle -->
+          <button
+            @click="menuOpen = !menuOpen"
+            class="md:hidden relative z-50 w-8 h-8 flex flex-col justify-center items-center gap-1.5"
+            aria-label="Menu"
+          >
+            <span
+              class="block w-6 h-[1px] bg-white transition-all duration-300"
+              :class="menuOpen && 'rotate-45 translate-y-[3.5px]'"
+            ></span>
+            <span
+              class="block w-6 h-[1px] bg-white transition-all duration-300"
+              :class="menuOpen && '-rotate-45 -translate-y-[3.5px]'"
+            ></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Menu Overlay -->
+      <div
+        class="menu-overlay fixed inset-0 bg-ink flex items-center justify-center md:hidden"
+        :class="menuOpen && 'open'"
+        x-cloak
+      >
+        <div class="text-center space-y-8">
+          <a
+            @click="menuOpen = false"
+            href="#home"
+            class="block font-serif text-4xl text-[#ededed]/90 hover:text-[#ededed] transition-colors"
+            >Accueil</a
+          >
+          <a
+            @click="menuOpen = false"
+            href="#expertise"
+            class="block font-serif text-4xl text-[#ededed]/90 hover:text-[#ededed] transition-colors"
+            >Expertise</a
+          >
+          <a
+            @click="menuOpen = false"
+            href="#about"
+            class="block font-serif text-4xl text-[#ededed]/90 hover:text-[#ededed] transition-colors"
+            >À propos</a
+          >
+          <a
+            @click="menuOpen = false"
+            href="#clients"
+            class="block font-serif text-4xl text-[#ededed]/90 hover:text-[#ededed] transition-colors"
+            >Clients</a
+          >
+          <a
+            @click="menuOpen = false"
+            href="#contact"
+            class="block font-serif text-4xl text-[#ededed]/90 hover:text-[#ededed] transition-colors"
+            >Contact</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!-- HOME -->
+    <!-- ═══════════════════════════════════════ -->
+    <section
+      id="home"
+      class="relative min-h-screen flex items-center bg-ink-light overflow-hidden"
+    >
+      <!-- Background texture -->
+      <div
+        class="absolute inset-0 bg-gradient-to-br from-ink-light via-ink-light/80 to-ink-light opacity-90"
+      ></div>
+
+      <div
+        class="relative z-10 max-w-[1400px] mx-auto px-6 md:px-10 lg:px-16 py-32 md:py-40 w-full"
+      >
+        <div class="max-w-4xl">
+          <!-- Overline -->
+          <div class="text-mask mb-8">
+            <span
+              class="text-[#ededed]/50 text-[11px] tracking-[0.3em] uppercase font-sans"
+              >Lyon — Paris — Marseille — Copenhague</span
+            >
+          </div>
+
+          <!-- Title -->
+          <h1 class="text-mask mb-6">
+            <span
+              class="block font-serif text-white text-[clamp(2.5rem,6vw,5.5rem)] leading-[1.15] font-semibold"
+            >
+              PR & Strategic Advisor
+            </span>
+          </h1>
+          <div class="text-mask" style="transition-delay: 0.15s">
+            <span
+              class="block font-serif text-[#ededed] text-[clamp(1.5rem,3.5vw,3rem)] leading-[1.15] font-light italic"
+            >
+              Brand Visibility, Influence & Casting
+            </span>
+          </div>
+
+          <!-- Divider -->
+          <div class="line-draw h-[1px] bg-[#ededed]/30 my-10 md:my-14"></div>
+
+          <!-- CTA -->
+          <div class="reveal reveal-delay-2 mt-10 md:mt-14">
+            <a
+              href="#contact"
+              class="group inline-flex items-center gap-4 text-[#ededed]/90 hover:text-[#ededed] transition-colors"
+            >
+              <span class="text-[11px] tracking-[0.25em] uppercase"
+                >Discutons ensemble</span
+              >
+              <span
+                class="block w-10 h-[1px] bg-[#ededed]/40 group-hover:w-16 transition-all duration-500"
+              ></span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!-- INTRODUCTION -->
+    <!-- ═══════════════════════════════════════ -->
+    <section class="py-24 md:py-36 bg-cream">
+      <div class="max-w-[1400px] mx-auto px-6 md:px-10 lg:px-16">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
+          <!-- Left label -->
+          <div class="lg:col-span-3">
+            <div class="reveal">
+              <span
+                class="text-[11px] tracking-[0.25em] uppercase text-ink/40 font-sans"
+                >Introduction</span
+              >
+            </div>
+          </div>
+          <!-- Right content -->
+          <div class="lg:col-span-8">
+            <div class="reveal">
+              <p
+                class="font-serif text-2xl md:text-3xl lg:text-[2.5rem] leading-[1.35] font-light text-ink"
+              >
+                Les relations médias reposent sur la capacité à construire les
+                bons angles, les bons récits et les bonnes rencontres entre une
+                marque, les médias et les talents qui incarnent son histoire.
+              </p>
+            </div>
+            <div class="hr-reveal h-[1px] bg-ink/10 my-10"></div>
+            <div class="reveal reveal-delay-2">
+              <p class="text-ink-light leading-relaxed max-w-lg font-light">
+                Depuis plus de 15 ans, j'interviens à l'intersection de la
+                stratégie, de la culture, du storytelling et des médias — pour
+                créer des histoires qui circulent et qui marquent.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!-- EXPERTISE (Home preview) -->
+    <!-- ═══════════════════════════════════════ -->
+    <section id="expertise" class="py-24 md:py-36 bg-white/50">
+      <div class="max-w-[1400px] mx-auto px-6 md:px-10 lg:px-16">
+        <div class="reveal mb-16 md:mb-24">
+          <span
+            class="text-[11px] tracking-[0.25em] uppercase text-ink/40 font-sans block mb-6"
+            >Expertises</span
+          >
+          <h2
+            class="font-serif text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] text-ink-light"
+          >
+            Stratégie, narration<br class="hidden md:block" />
+            & activation.
+          </h2>
+        </div>
+
+        <!-- Expertise blocks (accordion) -->
+        <div class="space-y-0">
+          <!-- 1. Relations médias -->
+          <div
+            class="reveal border-t border-ink/10 py-12 md:py-16 group"
+            x-data="{ open: false }"
+          >
+            <div
+              class="grid grid-cols-1 lg:grid-cols-12 gap-8 cursor-pointer"
+              @click="open = !open"
+            >
+              <div class="lg:col-span-1">
+                <span
+                  class="text-[11px] tracking-[0.2em] uppercase text-ink/30 font-sans"
+                  >01</span
+                >
+              </div>
+              <div class="lg:col-span-5">
+                <h3
+                  class="font-serif text-3xl md:text-4xl font-bold text-ink-light group-hover:text-ink transition-colors"
+                >
+                  Relations médias
+                </h3>
+              </div>
+              <div class="lg:col-span-5">
+                <p class="text-ink-light leading-relaxed font-light text-sm">
+                  Construire les bons angles pour toucher les bons médias, au
+                  bon moment.
+                </p>
+              </div>
+              <div class="lg:col-span-1 flex items-center justify-end">
+                <span
+                  class="text-2xl font-light text-ink/30 transition-transform duration-300"
+                  :class="open && 'rotate-45'"
+                  >+</span
+                >
+              </div>
+            </div>
+            <div
+              x-show="open"
+              x-collapse
+              class="lg:grid lg:grid-cols-12 gap-8 mt-8"
+            >
+              <div class="lg:col-start-7 lg:col-span-5">
+                <ul class="space-y-3 text-ink-light text-sm font-light">
+                  <li class="flex items-start gap-3">
+                    <span
+                      class="w-1 h-1 rounded-full bg-ink/20 mt-2 shrink-0"
+                    ></span
+                    >Construction d'angles éditoriaux
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <span
+                      class="w-1 h-1 rounded-full bg-ink/20 mt-2 shrink-0"
+                    ></span
+                    >Relations journalistes
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <span
+                      class="w-1 h-1 rounded-full bg-ink/20 mt-2 shrink-0"
+                    ></span
+                    >Placement médias
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <span
+                      class="w-1 h-1 rounded-full bg-ink/20 mt-2 shrink-0"
+                    ></span
+                    >Stratégies presse
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. Influence & Casting -->
+          <div
+            class="reveal border-t border-ink/10 py-12 md:py-16 group"
+            x-data="{ open: false }"
+          >
+            <div
+              class="grid grid-cols-1 lg:grid-cols-12 gap-8 cursor-pointer"
+              @click="open = !open"
+            >
+              <div class="lg:col-span-1">
+                <span
+                  class="text-[11px] tracking-[0.2em] uppercase text-ink/30 font-sans"
+                  >02</span
+                >
+              </div>
+              <div class="lg:col-span-5">
+                <h3
+                  class="font-serif text-3xl md:text-4xl font-bold text-ink-light group-hover:text-ink transition-colors"
+                >
+                  Influence & Casting sur-mesure
+                </h3>
+              </div>
+              <div class="lg:col-span-5">
+                <p class="text-ink-light leading-relaxed font-light text-sm">
+                  Identifier le bon talent pour créer une résonance authentique
+                  entre une marque et son époque.
+                </p>
+              </div>
+              <div class="lg:col-span-1 flex items-center justify-end">
+                <span
+                  class="text-2xl font-light text-ink/30 transition-transform duration-300"
+                  :class="open && 'rotate-45'"
+                  >+</span
+                >
+              </div>
+            </div>
+            <div
+              x-show="open"
+              x-collapse
+              class="lg:grid lg:grid-cols-12 gap-8 mt-8"
+            >
+              <div class="lg:col-start-7 lg:col-span-5">
+                <ul class="space-y-3 text-ink-light text-sm font-light">
+                  <li class="flex items-start gap-3">
+                    <span
+                      class="w-1 h-1 rounded-full bg-ink/20 mt-2 shrink-0"
+                    ></span
+                    >Identification talents
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <span
+                      class="w-1 h-1 rounded-full bg-ink/20 mt-2 shrink-0"
+                    ></span
+                    >Campagnes d'influence, célébrités et mannequins
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <span
+                      class="w-1 h-1 rounded-full bg-ink/20 mt-2 shrink-0"
+                    ></span
+                    >Activations réseaux sociaux
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. Storytelling -->
+          <div
+            class="reveal border-t border-ink/10 py-12 md:py-16 group"
+            x-data="{ open: false }"
+          >
+            <div
+              class="grid grid-cols-1 lg:grid-cols-12 gap-8 cursor-pointer"
+              @click="open = !open"
+            >
+              <div class="lg:col-span-1">
+                <span
+                  class="text-[11px] tracking-[0.2em] uppercase text-ink/30 font-sans"
+                  >03</span
+                >
+              </div>
+              <div class="lg:col-span-5">
+                <h3
+                  class="font-serif text-3xl md:text-4xl font-bold text-ink-light group-hover:text-ink transition-colors"
+                >
+                  Storytelling
+                </h3>
+              </div>
+              <div class="lg:col-span-5">
+                <p class="text-ink-light leading-relaxed font-light text-sm">
+                  Transformer un positionnement de marque en récit éditorial qui
+                  résonne dans les médias.
+                </p>
+              </div>
+              <div class="lg:col-span-1 flex items-center justify-end">
+                <span
+                  class="text-2xl font-light text-ink/30 transition-transform duration-300"
+                  :class="open && 'rotate-45'"
+                  >+</span
+                >
+              </div>
+            </div>
+            <div
+              x-show="open"
+              x-collapse
+              class="lg:grid lg:grid-cols-12 gap-8 mt-8"
+            >
+              <div class="lg:col-start-7 lg:col-span-5">
+                <ul class="space-y-3 text-ink-light text-sm font-light">
+                  <li class="flex items-start gap-3">
+                    <span
+                      class="w-1 h-1 rounded-full bg-ink/20 mt-2 shrink-0"
+                    ></span
+                    >Narration produit
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <span
+                      class="w-1 h-1 rounded-full bg-ink/20 mt-2 shrink-0"
+                    ></span
+                    >Angles éditoriaux
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <span
+                      class="w-1 h-1 rounded-full bg-ink/20 mt-2 shrink-0"
+                    ></span
+                    >Stratégie de contenu
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. Événements presse -->
+          <div
+            class="reveal border-t border-b border-ink/10 py-12 md:py-16 group"
+            x-data="{ open: false }"
+          >
+            <div
+              class="grid grid-cols-1 lg:grid-cols-12 gap-8 cursor-pointer"
+              @click="open = !open"
+            >
+              <div class="lg:col-span-1">
+                <span
+                  class="text-[11px] tracking-[0.2em] uppercase text-ink/30 font-sans"
+                  >04</span
+                >
+              </div>
+              <div class="lg:col-span-5">
+                <h3
+                  class="font-serif text-3xl md:text-4xl font-bold text-ink-light group-hover:text-ink transition-colors"
+                >
+                  Événements presse
+                </h3>
+              </div>
+              <div class="lg:col-span-5">
+                <p class="text-ink-light leading-relaxed font-light text-sm">
+                  Créer des moments qui transforment un lancement en événement
+                  médiatique.
+                </p>
+              </div>
+              <div class="lg:col-span-1 flex items-center justify-end">
+                <span
+                  class="text-2xl font-light text-ink/30 transition-transform duration-300"
+                  :class="open && 'rotate-45'"
+                  >+</span
+                >
+              </div>
+            </div>
+            <div
+              x-show="open"
+              x-collapse
+              class="lg:grid lg:grid-cols-12 gap-8 mt-8"
+            >
+              <div class="lg:col-start-7 lg:col-span-5">
+                <ul class="space-y-3 text-ink-light text-sm font-light">
+                  <li class="flex items-start gap-3">
+                    <span
+                      class="w-1 h-1 rounded-full bg-ink/20 mt-2 shrink-0"
+                    ></span
+                    >Conception d'expériences presse
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <span
+                      class="w-1 h-1 rounded-full bg-ink/20 mt-2 shrink-0"
+                    ></span
+                    >Lancements produits
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <span
+                      class="w-1 h-1 rounded-full bg-ink/20 mt-2 shrink-0"
+                    ></span
+                    >Événements influence
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!-- HOME CONTACT BAND -->
+    <!-- ═══════════════════════════════════════ -->
+    <section class="py-20 md:py-28 bg-ink">
+      <div class="max-w-[1400px] mx-auto px-6 md:px-10 lg:px-16 text-center">
+        <div class="reveal reveal-delay-2">
+          <a
+            href="#contact"
+            class="inline-block border border-white/30 hover:border-white/60 text-white text-[11px] tracking-[0.25em] uppercase px-10 py-4 transition-all duration-500 hover:bg-white/5 font-bold"
+          >
+            Me contacter
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!-- ABOUT -->
+    <!-- ═══════════════════════════════════════ -->
+    <section id="about" class="py-24 md:py-36 bg-cream">
+      <div class="max-w-[1400px] mx-auto px-6 md:px-10 lg:px-16">
+        <!-- Section header -->
+        <div class="reveal mb-16 md:mb-24">
+          <span
+            class="text-[11px] tracking-[0.25em] uppercase text-ink/40 font-sans block mb-6"
+            >À propos</span
+          >
+          <h2
+            class="font-serif text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] text-ink-light"
+          >
+            Construire la présence<br class="hidden md:block" />
+            médiatique des marques.
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20">
+          <!-- Left column — portrait -->
+          <div class="lg:col-span-5">
+            <div class="reveal aspect-[3/4] relative overflow-hidden">
+              <img
+                src="profile-photo.png"
+                alt="Elodie Benoit"
+                class="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+
+          <!-- Right column — bio text -->
+          <div class="lg:col-span-7 space-y-8">
+            <div class="reveal">
+              <p
+                class="font-serif text-2xl md:text-3xl font-bold leading-[1.4] text-ink-light"
+              >
+                Je suis PR & Strategic Advisor, spécialisée en visibilité de
+                marque et influence.
+              </p>
+            </div>
+
+            <div class="reveal reveal-delay-1">
+              <p class="text-ink-light leading-[1.8] font-light">
+                Depuis plus de 15 ans, j'accompagne des marques, agences et
+                institutions dans la construction de leur présence médiatique,
+                entre stratégie, storytelling et activation.
+              </p>
+            </div>
+
+            <div class="reveal reveal-delay-2">
+              <p class="text-ink-light leading-[1.8] font-light">
+                Les relations médias ne sont pas seulement une question de
+                contacts. Elles reposent avant tout sur la capacité à construire
+                les bons angles, les bons récits et les bonnes rencontres entre
+                une marque, les médias et les talents qui incarnent son
+                histoire. C'est à cette intersection que j'interviens.
+              </p>
+            </div>
+
+            <div class="reveal reveal-delay-3">
+              <p class="text-ink-light leading-[1.8] font-light">
+                J'accompagne mes clients dans la définition de leur stratégie
+                médiatique, la construction de narrations éditoriales fortes et
+                l'activation de dispositifs presse, influence et événements.
+              </p>
+            </div>
+
+            <div class="reveal reveal-delay-4">
+              <p class="text-ink-light leading-[1.8] font-light">
+                Une part essentielle de mon travail consiste également à
+                imaginer et orchestrer des castings de personnalités, célébrités
+                et influenceurs capables d'incarner un projet avec justesse.
+              </p>
+            </div>
+
+            <div class="reveal reveal-delay-5">
+              <p class="text-ink-light leading-[1.8] font-light">
+                Identifier le bon talent, celui qui crée une résonance
+                authentique entre une marque, son univers et son époque, est
+                souvent ce qui transforme une campagne en véritable moment
+                médiatique.
+              </p>
+            </div>
+
+            <div class="hr-reveal h-[1px] bg-ink/10 my-4"></div>
+
+            <div class="reveal">
+              <p class="text-ink/60 text-sm font-light italic">
+                Basée à Lyon, je travaille avec des marques et des agences dans
+                toute la France et à l'international.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!-- CLIENTS -->
+    <!-- ═══════════════════════════════════════ -->
+    <section id="clients" class="py-24 md:py-36 bg-cream">
+      <div class="max-w-[1400px] mx-auto px-6 md:px-10 lg:px-16">
+        <!-- Section header -->
+        <div class="reveal mb-16 md:mb-24">
+          <span
+            class="text-[11px] tracking-[0.25em] uppercase text-ink/40 font-sans block mb-6"
+            >Références</span
+          >
+          <h2
+            class="font-serif text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] text-ink-light"
+          >
+            Marques, agences<br class="hidden md:block" />
+            & institutions.
+          </h2>
+        </div>
+
+        <!-- Bloc Agences RP -->
+        <div class="reveal mb-16">
+          <h3
+            class="text-[11px] tracking-[0.25em] uppercase text-ink/40 font-sans mb-10 font-bold"
+          >
+            Agences RP
+          </h3>
+          <div class="space-y-0">
+            <!-- Agence Vianova RP -->
+            <div
+              class="agency-block border-t border-ink/10 py-6 cursor-pointer"
+            >
+              <span
+                class="font-serif text-xl md:text-2xl font-bold text-ink-light block"
+                >Agence Vianova RP</span
+              >
+              <div class="agency-brands mt-3">
+                <div class="flex flex-wrap gap-x-8 gap-y-2 pb-2">
+                  <span class="text-sm text-ink-light font-light">Hema</span>
+                  <span class="text-sm text-ink-light font-light"
+                    >Dulux Valentine / Akzo Nobel</span
+                  >
+                  <span class="text-sm text-ink-light font-light"
+                    >Deceuninck</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- Agence Atelier Jabri -->
+            <div
+              class="agency-block border-t border-ink/10 py-6 cursor-pointer"
+            >
+              <span
+                class="font-serif text-xl md:text-2xl font-bold text-ink-light block"
+                >Agence Atelier Jabri</span
+              >
+              <div class="agency-brands mt-3">
+                <div class="flex flex-wrap gap-x-8 gap-y-2 pb-2">
+                  <span class="text-sm text-ink-light font-light"
+                    >Marius Aurenti</span
+                  >
+                  <span class="text-sm text-ink-light font-light"
+                    >Patrón, Groupe Bacardi</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- Agence 14 Septembre -->
+            <div
+              class="agency-block border-t border-ink/10 py-6 cursor-pointer"
+            >
+              <span
+                class="font-serif text-xl md:text-2xl font-bold text-ink-light block"
+                >Agence 14 Septembre</span
+              >
+              <div class="agency-brands mt-3">
+                <div class="flex flex-wrap gap-x-8 gap-y-2 pb-2">
+                  <span class="text-sm text-ink-light font-light"
+                    >MDD E.Leclerc</span
+                  >
+                  <span class="text-sm text-ink-light font-light">Sodebo</span>
+                  <span class="text-sm text-ink-light font-light"
+                    >Pourdebon.com</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- Agence Rumeur Publique -->
+            <div
+              class="agency-block border-t border-ink/10 py-6 cursor-pointer"
+            >
+              <span
+                class="font-serif text-xl md:text-2xl font-bold text-ink-light block"
+                >Agence Rumeur Publique</span
+              >
+              <div class="agency-brands mt-3">
+                <div class="flex flex-wrap gap-x-8 gap-y-2 pb-2">
+                  <span class="text-sm text-ink-light font-light">Ferrero</span>
+                  <span class="text-sm text-ink-light font-light"
+                    >Quitoque</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- Agence Faubourg Stories -->
+            <div
+              class="agency-block border-t border-ink/10 py-6 cursor-pointer"
+            >
+              <span
+                class="font-serif text-xl md:text-2xl font-bold text-ink-light block"
+                >Agence Faubourg Stories</span
+              >
+              <div class="agency-brands mt-3">
+                <div class="flex flex-wrap gap-x-8 gap-y-2 pb-2">
+                  <span class="text-sm text-ink-light font-light">Mattel</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Agence Esprit des Sens -->
+            <div
+              class="agency-block border-t border-ink/10 py-6 cursor-pointer"
+            >
+              <span
+                class="font-serif text-xl md:text-2xl font-bold text-ink-light block"
+                >Agence Esprit des Sens</span
+              >
+              <div class="agency-brands mt-3">
+                <div class="flex flex-wrap gap-x-8 gap-y-2 pb-2">
+                  <span class="text-sm text-ink-light font-light">Fermob</span>
+                  <span class="text-sm text-ink-light font-light"
+                    >Grand Hôtel Dieu Lyon</span
+                  >
+                  <span class="text-sm text-ink-light font-light"
+                    >Terresens</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- Agence S2H -->
+            <div
+              class="agency-block border-t border-b border-ink/10 py-6 cursor-pointer"
+            >
+              <span
+                class="font-serif text-xl md:text-2xl font-bold text-ink-light block"
+                >Agence S2H</span
+              >
+              <div class="agency-brands mt-3">
+                <div class="flex flex-wrap gap-x-8 gap-y-2 pb-2">
+                  <span class="text-sm text-ink-light font-light"
+                    >Maison Sarah Lavoine</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bloc Casting -->
+        <div class="reveal mb-16">
+          <h3
+            class="text-[11px] tracking-[0.25em] uppercase text-ink/40 font-sans mb-10 font-bold"
+          >
+            Casting
+          </h3>
+          <div class="space-y-0">
+            <!-- Agence Fondamentale Paris -->
+            <div
+              class="agency-block border-t border-b border-ink/10 py-6 cursor-pointer"
+            >
+              <span
+                class="font-serif text-xl md:text-2xl font-bold text-ink-light block"
+                >Agence Fondamentale Paris</span
+              >
+              <div class="agency-brands mt-3">
+                <div class="flex flex-wrap gap-x-8 gap-y-2 pb-2">
+                  <span class="text-sm text-ink-light font-light"
+                    >Make Up For Ever</span
+                  >
+                  <span class="text-sm text-ink-light font-light"
+                    >Zadig et Voltaire parfum</span
+                  >
+                  <span class="text-sm text-ink-light font-light"
+                    >Maison Veuve Clicquot</span
+                  >
+                  <span class="text-sm text-ink-light font-light"
+                    >Christian Louboutin beauty</span
+                  >
+                  <span class="text-sm text-ink-light font-light"
+                    >Tiffany & Co parfum</span
+                  >
+                  <span class="text-sm text-ink-light font-light"
+                    >Dolce & Gabbana beauty</span
+                  >
+                  <span class="text-sm text-ink-light font-light"
+                    >Viktor & Rolf parfum</span
+                  >
+                  <span class="text-sm text-ink-light font-light"
+                    >Chloé parfum</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bloc Marques / Startups -->
+        <div class="reveal mb-16">
+          <h3
+            class="text-[11px] tracking-[0.25em] uppercase text-ink/40 font-sans mb-10 font-bold"
+          >
+            Marques / Startups
+          </h3>
+          <div class="border-t border-b border-ink/10 pt-8 pb-8">
+            <div class="flex flex-wrap gap-x-10 gap-y-4">
+              <span class="font-serif text-lg font-light text-ink">Bini</span>
+              <span class="font-serif text-lg font-light text-ink"
+                >Epicery</span
+              >
+              <span class="font-serif text-lg font-light text-ink"
+                >Groupe Oui Care</span
+              >
+              <span class="font-serif text-lg font-light text-ink"
+                >GL Events</span
+              >
+              <span class="font-serif text-lg font-light text-ink"
+                >Birger Christensen</span
+              >
+              <span class="font-serif text-lg font-light text-ink">Smoon</span>
+              <span class="font-serif text-lg font-light text-ink"
+                >Polochon & Cie</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Bloc Associations -->
+        <div class="reveal">
+          <h3
+            class="text-[11px] tracking-[0.25em] uppercase text-ink/40 font-sans mb-10 font-bold"
+          >
+            Associations
+          </h3>
+          <div class="border-t border-b border-ink/10 pt-8 pb-8">
+            <div class="flex flex-wrap gap-x-10 gap-y-4">
+              <span class="font-serif text-lg font-light text-ink"
+                >La Maison des Femmes</span
+              >
+              <span class="font-serif text-lg font-light text-ink"
+                >Empow'Her</span
+              >
+              <span class="font-serif text-lg font-light text-ink"
+                >Festival Pop & Psy</span
+              >
+              <span class="font-serif text-lg font-light text-ink"
+                >Fondation Renaud</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!-- CONTACT -->
+    <!-- ═══════════════════════════════════════ -->
+    <section id="contact" class="py-24 md:py-36 bg-ink-light text-white">
+      <div class="max-w-[1400px] mx-auto px-6 md:px-10 lg:px-16">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20">
+          <!-- Left -->
+          <div class="lg:col-span-6">
+            <div class="reveal">
+              <span
+                class="text-[11px] tracking-[0.25em] uppercase text-white/30 font-sans block mb-6"
+                >Contact</span
+              >
+              <h2
+                class="font-serif text-4xl md:text-5xl lg:text-[3.5rem] font-bold leading-[1.1] text-white/95"
+              >
+                Faisons émerger votre marque là où elle doit être vue.
+              </h2>
+            </div>
+
+            <div class="hr-reveal h-[1px] bg-white/10 my-10 md:my-14"></div>
+
+            <div class="reveal reveal-delay-2 space-y-6">
+              <div>
+                <span
+                  class="text-[11px] tracking-[0.2em] uppercase text-white/30 block mb-2"
+                  >Email</span
+                >
+                <a
+                  href="mailto:elodie.benoit@wegetit.fr"
+                  class="text-white/80 hover:text-white transition-colors font-light text-lg link-underline"
+                >
+                  elodie.benoit@wegetit.fr
+                </a>
+              </div>
+
+              <div>
+                <span
+                  class="text-[11px] tracking-[0.2em] uppercase text-white/30 block mb-2"
+                  >Téléphone</span
+                >
+                <a
+                  href="tel:+33603587137"
+                  class="text-white/80 hover:text-white transition-colors font-light text-lg link-underline"
+                >
+                  +33 (0)6 03 58 71 37
+                </a>
+              </div>
+
+              <div>
+                <span
+                  class="text-[11px] tracking-[0.2em] uppercase text-white/30 block mb-2"
+                  >LinkedIn</span
+                >
+                <a
+                  href="https://www.linkedin.com/in/elodie-benoit-we-get-it-relations-medias-lyon/"
+                  target="_blank"
+                  rel="noopener"
+                  class="text-white/80 hover:text-white transition-colors font-light text-lg link-underline"
+                >
+                  Elodie Benoit
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right -->
+          <div class="lg:col-span-6 flex items-end">
+            <div class="reveal reveal-delay-3 w-full">
+              <div class="border border-white/10 p-10 md:p-14">
+                <p
+                  class="font-serif text-2xl md:text-3xl font-light leading-[1.4] text-white/70 italic"
+                >
+                  "Identifier le bon talent, celui qui crée une résonance
+                  authentique entre une marque, son univers et son époque, est
+                  souvent ce qui transforme une campagne en véritable moment
+                  médiatique."
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!-- FOOTER -->
+    <!-- ═══════════════════════════════════════ -->
+    <footer class="py-10 bg-ink-light border-t border-white/5">
+      <div class="max-w-[1400px] mx-auto px-6 md:px-10 lg:px-16">
+        <div
+          class="flex flex-col md:flex-row items-center justify-between gap-6"
+        >
+          <span class="font-serif text-white/30 text-sm"
+            >&copy; 2026 Weget!t</span
+          >
+          <div class="flex items-center gap-8">
+            <span class="text-white/20 text-[10px] tracking-[0.2em] uppercase"
+              >Lyon — Paris — Marseille — Copenhague</span
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Alpine.js Collapse plugin -->
+    <script src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- Reinit observer after Alpine renders -->
+    <script>
+      document.addEventListener("alpine:init", () => {
+        // Re-observe after dynamic content loads
+        setTimeout(() => {
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("visible");
+                }
+              });
+            },
+            { threshold: 0.15, rootMargin: "0px 0px -40px 0px" },
+          );
+
+          document
+            .querySelectorAll(
+              ".reveal:not(.visible), .line-draw:not(.visible), .hr-reveal:not(.visible), .text-mask:not(.visible)",
+            )
+            .forEach((el) => {
+              observer.observe(el);
+            });
+        }, 100);
+      });
+    </script>
+  </body>
+</html>
