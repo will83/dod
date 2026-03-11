@@ -212,11 +212,14 @@
 
       /* Mobile menu */
       .menu-overlay {
-        clip-path: circle(0% at calc(100% - 2rem) 2rem);
-        transition: clip-path 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.4s ease, visibility 0.4s ease;
+        background: #344a3d !important;
       }
       .menu-overlay.open {
-        clip-path: circle(150% at calc(100% - 2rem) 2rem);
+        opacity: 1;
+        visibility: visible;
       }
 
       /* Expertise card */
@@ -391,7 +394,7 @@
 
       <!-- Mobile Menu Overlay -->
       <div
-        class="menu-overlay fixed inset-0 bg-ink flex items-center justify-center md:hidden"
+        class="menu-overlay fixed inset-0 bg-ink-light flex items-center justify-center md:hidden z-40"
         :class="menuOpen && 'open'"
         x-cloak
       >
