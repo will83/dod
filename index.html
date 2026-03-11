@@ -377,7 +377,7 @@
           <!-- Mobile Menu Toggle -->
           <button
             @click="menuOpen = !menuOpen"
-            class="md:hidden relative z-50 w-8 h-8 flex flex-col justify-center items-center gap-1.5"
+            class="md:hidden relative z-[70] w-8 h-8 flex flex-col justify-center items-center gap-1.5"
             aria-label="Menu"
           >
             <span
@@ -391,47 +391,56 @@
           </button>
         </div>
       </div>
-
-      <!-- Mobile Menu Overlay -->
-      <div
-        class="menu-overlay fixed inset-0 bg-ink-light flex items-center justify-center md:hidden z-40"
-        :class="menuOpen && 'open'"
-        x-cloak
-      >
-        <div class="text-center space-y-8">
-          <a
-            @click="menuOpen = false"
-            href="#home"
-            class="block font-serif text-4xl text-[#ededed]/90 hover:text-[#ededed] transition-colors"
-            >Accueil</a
-          >
-          <a
-            @click="menuOpen = false"
-            href="#expertise"
-            class="block font-serif text-4xl text-[#ededed]/90 hover:text-[#ededed] transition-colors"
-            >Expertise</a
-          >
-          <a
-            @click="menuOpen = false"
-            href="#about"
-            class="block font-serif text-4xl text-[#ededed]/90 hover:text-[#ededed] transition-colors"
-            >À propos</a
-          >
-          <a
-            @click="menuOpen = false"
-            href="#clients"
-            class="block font-serif text-4xl text-[#ededed]/90 hover:text-[#ededed] transition-colors"
-            >Clients</a
-          >
-          <a
-            @click="menuOpen = false"
-            href="#contact"
-            class="block font-serif text-4xl text-[#ededed]/90 hover:text-[#ededed] transition-colors"
-            >Contact</a
-          >
-        </div>
-      </div>
     </nav>
+
+    <!-- Mobile Menu Overlay (outside nav to avoid mix-blend-difference) -->
+    <div
+      class="menu-overlay fixed inset-0 flex items-center justify-center md:hidden z-[60]"
+      :class="menuOpen && 'open'"
+      x-cloak
+    >
+      <!-- Close button -->
+      <button
+        @click="menuOpen = false"
+        class="absolute top-6 right-6 w-8 h-8 flex flex-col justify-center items-center gap-1.5"
+        aria-label="Fermer"
+      >
+        <span class="block w-6 h-[1px] bg-white rotate-45 translate-y-[3.5px]"></span>
+        <span class="block w-6 h-[1px] bg-white -rotate-45 -translate-y-[3.5px]"></span>
+      </button>
+      <div class="text-center space-y-8">
+        <a
+          @click="menuOpen = false"
+          href="#home"
+          class="block font-serif text-4xl text-[#ededed]/90 hover:text-[#ededed] transition-colors"
+          >Accueil</a
+        >
+        <a
+          @click="menuOpen = false"
+          href="#expertise"
+          class="block font-serif text-4xl text-[#ededed]/90 hover:text-[#ededed] transition-colors"
+          >Expertise</a
+        >
+        <a
+          @click="menuOpen = false"
+          href="#about"
+          class="block font-serif text-4xl text-[#ededed]/90 hover:text-[#ededed] transition-colors"
+          >À propos</a
+        >
+        <a
+          @click="menuOpen = false"
+          href="#clients"
+          class="block font-serif text-4xl text-[#ededed]/90 hover:text-[#ededed] transition-colors"
+          >Clients</a
+        >
+        <a
+          @click="menuOpen = false"
+          href="#contact"
+          class="block font-serif text-4xl text-[#ededed]/90 hover:text-[#ededed] transition-colors"
+          >Contact</a
+        >
+      </div>
+    </div>
 
     <!-- ═══════════════════════════════════════ -->
     <!-- HOME -->
@@ -476,20 +485,6 @@
           <!-- Divider -->
           <div class="line-draw h-[1px] bg-[#ededed]/30 my-10 md:my-14"></div>
 
-          <!-- CTA -->
-          <div class="reveal reveal-delay-2 mt-10 md:mt-14">
-            <a
-              href="#contact"
-              class="group inline-flex items-center gap-4 text-[#ededed]/90 hover:text-[#ededed] transition-colors"
-            >
-              <span class="text-[11px] tracking-[0.25em] uppercase"
-                >Discutons ensemble</span
-              >
-              <span
-                class="block w-10 h-[1px] bg-[#ededed]/40 group-hover:w-16 transition-all duration-500"
-              ></span>
-            </a>
-          </div>
         </div>
 
       </div>
